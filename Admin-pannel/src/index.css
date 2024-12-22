@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+
+
+html {
+  scroll-behavior: smooth;
+}
+.book::-webkit-scrollbar {
+  display: none;
+  /* scroll-behavior: smooth; */
+}
+.bookcate::-webkit-scrollbar {
+  display: none;
+  /* scroll-behavior: smooth; */
+}
+.author::-webkit-scrollbar {
+  display: none;
+  /* scroll-behavior: smooth; */
+}
+input[type="radio"]{
+    accent-color: black;
+    
+  }
+  .left::-webkit-scrollbar {
+    display: none;
+    scroll-behavior: smooth;
+  }
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px; /* width of the scrollbar */
+  height: 12px; /* height of the scrollbar */
+}
+
+/* Track (the part where the thumb slides) */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* light gray background for track */
+  border-radius: 10px;
+}
+
+/* Thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background-color: #23acc4; /* green thumb color */
+  /* border-radius: 10px; */
+  border: 3px solid #f1f1f1; /* a border around the thumb */
+}
+
+/* Optional: When hovering over the thumb */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #23acc4; /* darker green when hovering */
+}
+
+@tailwind utilities;
+
+

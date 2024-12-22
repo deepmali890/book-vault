@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+
+
+
+
+
+
+.cartside{
+  opacity: 0;
+  visibility: hidden;
+  /* transition:1s; */
+}
+.showCat::-webkit-scrollbar {
+  display: none;
+}
+
+.underSign{
+  position: fixed;
+  right: -5000px;
+  transition: 0.4s;
+}
+.showSign{
+  position: fixed;
+  right: 0px;
+  transition: 0.4s;
+} 
+.underCat{
+  position: fixed;
+  left: -5000px;
+  transition: 0.2s;
+}
+.showCat{
+  position: fixed;
+  left: 0px;
+  transition: 0.2s;
+} 
+
+.slick-slide {
+  width: calc(100% - 20px); /* Adjust width to account for the added margin */
+}
+/* element.style {
+  display: block;
+ 
+} */
+.slick-prev {
+  left: 10px !important;
+  z-index: 9 !important;
+  
+  
+  
+}
+.slick-prev:before{
+  content: '->'; 
+  font-family: 'Font Awesome 5 Free';
+  color: white !important;
+
+
+
+}
+.slick-next{
+  right: 30px !important;
+  z-index: 9 !important;
+}
+.slick-next:before {
+  content: '';
+  font-family: 'Font Awesome 5 Free';
+  color: black !important;
+
+}
+@tailwind utilities;
+
+
