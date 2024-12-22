@@ -1,3 +1,4 @@
+'use client'
 import axios from "axios";
 
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");

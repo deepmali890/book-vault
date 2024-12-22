@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { MdOutlineCategory } from 'react-icons/md'
 import { Cover } from '../components/ui/cover'

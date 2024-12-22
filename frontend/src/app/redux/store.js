@@ -1,3 +1,4 @@
+'use client'
 import { configureStore } from '@reduxjs/toolkit'
 import parentCategorySlice from './slices/parentCategorySlice'
 import bookByParentCategorySlice from './slices/bookByParentCategory'

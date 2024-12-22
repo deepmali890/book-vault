@@ -12,9 +12,14 @@ const page = () => {
   const id = useParams();
   const dispatch = useDispatch()
   let [product, setProduct] = useState({});
-  const [isSubscribed, setIsSubscribed] = useState(false); 
+  const [isSubscribed, setIsSubscribed] = useState(false);
   const [filepath, setFilepath] = useState('')
   const Route = useRouter()
+  const [windowWidth, setWindowWidth] = useState(undefined);
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth); // Client-side code
+  }, []);
   // console.log(params)
 
 
@@ -41,17 +46,29 @@ const page = () => {
   }, [books])
   console.log(product)
 
-const handleSubscribe =()=>{
-  if (!isSubscribed) {
-    // Redirect to subscription page
-    alert('Please subscribe to read this book.');
-    Route.push('/pages/subscription-page')
+  const handleSubscribe = () => {
+    if (!isSubscribed) {
+      // Redirect to subscription page
+      alert('Please subscribe to read this book.');
+      Route.push('/pages/subscription-page')
+    }
+    else {
+      // Allow access to the book
+      window.open(filepath + product.pdf);
+    }
   }
-  else {
-    // Allow access to the book
-    window.open(filepath + product.pdf);
+
+  
+  if (windowWidth === undefined) {
+    return <div className="h-screen flex justify-center items-center">
+      <div className='flex space-x-2 justify-center items-center bg-white h-screen dark:invert'>
+        <span className='sr-only'>Loading...</span>
+        <div className='h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+        <div className='h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+        <div className='h-8 w-8 bg-black rounded-full animate-bounce'></div>
+      </div>
+    </div>; // Fallback content
   }
-}
 
   return (
     <>
@@ -137,11 +154,11 @@ const handleSubscribe =()=>{
 
               <button onClick={handleSubscribe} type="button" className="min-w-[200px] px-4 py-3 bg-gray-800 hover:bg-gray-900 text-white text-sm font-semibold rounded">
                 Read now
-              
-                </button>
+
+              </button>
               <button type="button" className="min-w-[200px] px-4 py-2.5 border border-gray-800 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded">Add to cart</button>
             </div>
-            
+
 
             <div className="flex flex-wrap items-center text-sm text-gray-800 mt-8">
               <svg xmlns="http://www.w3.org/2000/svg" className="fill-current w-6 mr-3" viewBox="0 0 48 48">

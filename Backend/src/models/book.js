@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const bookSchema = mongoose.Schema({
-    name: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
     parent_categories: { type: mongoose.Schema.Types.ObjectId, ref: 'parent_categories' },
     book_category: { type: mongoose.Schema.Types.ObjectId, ref: 'book_category' },
     authors: { type: mongoose.Schema.Types.ObjectId, ref: 'authors' },

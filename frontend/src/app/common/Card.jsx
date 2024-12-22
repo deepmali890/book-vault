@@ -1,3 +1,4 @@
+'use client'
 // import React, { useEffect, useState } from 'react';
 import { FaRegHeart, FaStar } from 'react-icons/fa';
 import { CiStar } from "react-icons/ci";

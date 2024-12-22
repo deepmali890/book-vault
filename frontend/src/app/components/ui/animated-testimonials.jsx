@@ -42,7 +42,7 @@ export const AnimatedTestimonials = ({ bookData, filepath, autoplay = false }) =
             <AnimatePresence>
               {bookData.map((book, index) => (
                 <motion.div
-                  key={filepath + book.book}
+                  key={index}
                   initial={{
                     opacity: 0,
                     scale: 0.9,
