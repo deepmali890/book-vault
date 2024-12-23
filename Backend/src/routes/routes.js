@@ -14,6 +14,8 @@ const blogRouterWeb = require('./website/blogweb');
 const bookCategoryWebRouter = require('./website/bookcategoryWeb');
 const bookWebRouter = require('./website/books');
 const teamRouter = require('./admin/team');
+const cartRouter = require('./website/cart');
+const userRouter = require('./website/user');
 
 const adminRouter = express.Router();
 const websiteRouter = express.Router();
@@ -36,6 +38,8 @@ websiteRouter.use('/inquire',inquireRouter)
 websiteRouter.use('/blog-web',blogRouterWeb)
 websiteRouter.use('/read-bookCategory-feature',bookCategoryWebRouter)
 websiteRouter.use('/allbooks',bookWebRouter)
+websiteRouter.use('/cart',cartRouter)
+websiteRouter.use('/user',userRouter)
 
 
 module.exports={

@@ -32,8 +32,8 @@ useEffect(()=>{
 
   return (
     <div>
-      <div className="grid grid-cols-[20%_80%]">
-        <div className="bg-black"></div>
+      <div className="">
+     
         <div className="">
           <div className="font-sans py-4 mx-auto lg:max-w-6xl md:max-w-4xl max-sm:max-w-md">
             <h2 className="text-4xl font-extrabold text-gray-800 text-center mb-12">Top Products</h2>

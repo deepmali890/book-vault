@@ -6,6 +6,7 @@ import authorSlice from './slices/authorSlice'
 import blogSlice from './slices/blogSlice'
 import featureBookCategorySlice from './slices/featureBookCategorySlice'
 import booksSlice from './slices/allBooksSlice'
+import  cartSlice  from './slices/cartSlice'
 
 
 export const store = configureStore({
@@ -16,6 +17,7 @@ export const store = configureStore({
     author: authorSlice,
     blog: blogSlice,
     featureBook: featureBookCategorySlice,
-    allBooks: booksSlice
+    allBooks: booksSlice,
+    cart:cartSlice
   },
 })

@@ -6,6 +6,7 @@ import Footer from "./common/Footer";
 import LayoutWrapper from "./LayoutWrapper";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import {Toaster} from 'react-hot-toast'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Toaster position="top-left"/>
        <Provider store={store}>
       <LayoutWrapper>
         {children}

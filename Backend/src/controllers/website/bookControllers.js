@@ -5,7 +5,7 @@ const readBookWeb = async (req, res) => {
         const data = await Book.find({ deleted_at: null, status: true, type:true })
             .populate('parent_categories', 'name description')
             .populate('book_category', 'name description slug')
-            .populate('authors', 'name description')
+            .populate('authors', 'name description thumbnail')
 
         const filepath = `${req.protocol}://${req.get('host')}/book-files/`
         const pdfPath = `${req.protocol}://${req.get('host')}/book-files/pdfs/`;

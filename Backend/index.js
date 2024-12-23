@@ -24,6 +24,14 @@ app.use('/inquire-files/', express.static(path.join(__dirname, 'src', 'uploads',
 app.use('/blog-files', express.static(path.join(__dirname, 'src', 'uploads', 'blog')));
 app.use('/team-files/', express.static(path.join(__dirname, 'src', 'uploads', 'team')));
 
+
+
+app.use((error, req, res, next) => {
+    const message = error.message || 'server error'
+    const statusCode = error.statusCode || 500;
+    res.status(statusCode).json({ message:message });
+
+})
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)
 })

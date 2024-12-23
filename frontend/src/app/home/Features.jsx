@@ -16,7 +16,7 @@ const Features = () => {
     const [filepath, setFilePath] = useState('')
 
     const featureBook = useSelector((state) => state.featureBook.value)
-    console.log("niku", featureBook)
+    // console.log("niku", featureBook)
 
 
     useEffect(() => {
