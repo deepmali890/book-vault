@@ -104,7 +104,7 @@ const { readBlogWeb } = require("./website/blog");
 const { activeBookCategoryForWeb } = require("./website/bookCategory");
 const { readBookWeb } = require("./website/bookControllers");
 const { cretaeTeam, readTeam } = require("./admin/team");
-const { createCart } = require("./website/cartControllers");
+const { createCart, readCart } = require("./website/cartControllers");
 const { regsiterUser, loginUser } = require("./website/user");
 
 module.exports = {
@@ -188,6 +188,8 @@ module.exports = {
     readTeam,
     createCart,
     regsiterUser,
-    loginUser
+    loginUser,
+    readCart
+    
     
 }

@@ -12,7 +12,6 @@ const readBookWeb = async (req, res) => {
         const audioPath = `${req.protocol}://${req.get('host')}/book-files/audio/`;
 
 
-        console.log(data)
         res.status(200).json({ message: 'success', data, filepath, pdfPath, audioPath })
     }
     catch (error) {

@@ -92,7 +92,13 @@ function LoginBox({ loginStatus, setLoginStatus }) {
 
         if (response.status === 200 || response.status === 201) {
           toast.success(response.data.message || "User registered successfully!");
-          Cookies.set('book_vault', JSON.stringify(response.data.token))
+          const { token, userId } = response.data;
+          Cookies.set(
+            "book_vault",
+            JSON.stringify({ token, userId }),
+            { expires: 7, path: "/" } // Set expiration and path for the cookie
+          );
+          
           setLoginStatus(false)
           e.target.reset()
 

@@ -70,7 +70,7 @@ const loginUser = async(req,res,next)=>{
             }
 
             const accessToken = jwt.sign({email:formeteddEmail,userId:findededUser._id},process.env.JWT_SECRET_KEY,{expiresIn:'7d'})
-            res.status(200).json({message:"login successfully",status:true,token:accessToken})
+            res.status(200).json({message:"login successfully",status:true,token:accessToken,userId:findededUser._id})
     } 
     catch (error) {
         next(error)

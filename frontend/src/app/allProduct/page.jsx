@@ -23,7 +23,7 @@ const page = () => {
 
 
 
-  console.log("shanti",books)
+  console.log("shanti", books)
 
 
 
@@ -34,7 +34,7 @@ const page = () => {
 
   useEffect(() => {
     if (books.data) setbooksData(books.data);
-    
+
 
     setFilePath(books.filepath)
   }, [books])
@@ -57,30 +57,30 @@ const page = () => {
 
 
 
-      
-<h2 className="text-4xl font-extrabold text-gray-800 justify-center my-12 flex items-center gap-2">All Books <RiBookShelfFill /></h2>
-        <div className="grid grid-cols-[20%_80%] my-10">
-         {/* <FilterSection/> */}
-         <aside className="">
-          <FilterSection/>
-         </aside>
-            
-           <aside>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
+
+      <h2 className="text-4xl font-extrabold text-gray-800 justify-center my-12 flex items-center ">All Books <RiBookShelfFill /></h2>
+      <div className="grid grid-cols-[20%_75%] max-w-full my-10">
+        {/* <FilterSection/> */}
+        <aside className="">
+          <FilterSection />
+        </aside>
+
+        <aside>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
 
 
 
-                {
-                  booksData.map((product, index) => (
-                    <Card key={index} product={product} filePath={filepath} />
-                  ))
-                }
-              </div>
-              </aside>
+            {
+              booksData.map((product, index) => (
+                <Card key={index} product={product} filePath={filepath} />
+              ))
+            }
           </div>
-          
-      
-      
+        </aside>
+      </div>
+
+
+
     </>
   )
 }

@@ -35,7 +35,7 @@ const NewArrivels = () => {
         dots: false,               // Displays navigation dots below the slider.
         infinite: true,           // Enables infinite loop for slides. After the last slide, it loops back to the first.
         speed: 500,               // Duration (in milliseconds) of transition between slides.
-        slidesToShow: 4,          // Number of slides to show at once in the carousel.
+        slidesToShow: 5,          // Number of slides to show at once in the carousel.
         slidesToScroll: 1,        // Number of slides to scroll at a time.
         autoPlay: true,           // Enables autoplay of the carousel/slider. The slides will change automatically.
         autoplaySpeed: 1000,      // Speed of autoplay transition in milliseconds (this is optional but often used with autoplay).
