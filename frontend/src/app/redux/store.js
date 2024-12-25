@@ -7,6 +7,7 @@ import blogSlice from './slices/blogSlice'
 import featureBookCategorySlice from './slices/featureBookCategorySlice'
 import booksSlice from './slices/allBooksSlice'
 import  cartSlice  from './slices/cartSlice'
+import commentSlice  from './slices/commentDetailsSlice'
 
 
 export const store = configureStore({
@@ -18,6 +19,7 @@ export const store = configureStore({
     blog: blogSlice,
     featureBook: featureBookCategorySlice,
     allBooks: booksSlice,
-    cart:cartSlice
+    cart:cartSlice,
+    app:commentSlice
   },
 })

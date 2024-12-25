@@ -9,7 +9,7 @@ import axios from "axios";
 //             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/cart/create-cart`, data);
 //             return response.data; 
 //         } catch (error) {
-//             console.log(error);
+//          
 //             return thunkApi.rejectWithValue(error.response?.data || error.message || 'Something went wrong');
 //         }
 //     }
@@ -20,7 +20,7 @@ export const fatchCart = createAsyncThunk(
     async (id, thunkApi) => {
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/cart/read-cart/${id}`);
-            console.log(">>>>>>>id print",id)
+       
             return response.data; // return only necessary data from the API response
         } catch (error) {
             console.log(error);
@@ -68,7 +68,7 @@ export const cartSlice = createSlice({
             })
             // Handle fatchCart.fulfilled (successful API response)
             .addCase(fatchCart.fulfilled, (state, action) => {
-                console.log("Cart response:", action.payload);
+                // console.log("Cart response:", action.payload);
                 state.value = action.payload;  // Update cart data
                 state.loading = false;
             })

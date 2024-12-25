@@ -87,7 +87,7 @@ function LoginBox({ loginStatus, setLoginStatus }) {
         },
       })
       .then((response) => {
-        console.log("User registered successfully:", response.data);
+    
         setloding(false); // Set loading to false when response is received
 
         if (response.status === 200 || response.status === 201) {
@@ -161,7 +161,7 @@ function SignUpBox({ setCompStatus, compStatus , loginStatus, setLoginStatus }) 
       }
     )
       .then((response) => {
-        console.log("User registered successfully:", response.data);
+
         setloding(false); // Set loading to false when response is received
 
         if (response.status === 200 || response.status === 201) {

@@ -23,7 +23,7 @@ const page = () => {
 
 
 
-  console.log("shanti", books)
+
 
 
 

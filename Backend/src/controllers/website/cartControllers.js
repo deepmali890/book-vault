@@ -61,7 +61,20 @@ const readCart = async (req, res, next) => {
     }
 };
 
+const deleteCart = async (req,res,next)=>{
+    try {
+        const data = await Cart.deleteOne(req.params)
+        
+    } 
+    catch (error) {
+        console.error(error);
+        next(error);  // Pass the error to the next middleware for centralized error handling
+        return res.status(500).json({ message: 'Error creating cart' });
+    }
+}
+
 module.exports = {
     createCart,
-    readCart
+    readCart,
+    deleteCart
 };

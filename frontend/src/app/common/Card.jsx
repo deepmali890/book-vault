@@ -8,10 +8,11 @@ import { useDispatch } from "react-redux";
 import { addCart, fatchCart } from "../redux/slices/cartSlice";
 import toast from "react-hot-toast";
 import axios from "axios";
+import AddToCart from "../components/ui/AddToCart";
 
 const Card = ({ product, filePath }) => {
   const router = useRouter();
-  const dispatch = useDispatch();
+
 
   // Handle navigation to product details
   const handleProductDetails = () => {
@@ -24,50 +25,41 @@ const Card = ({ product, filePath }) => {
         text: "You must be logged in to view product details.",
       });
     }
-    router.push(`/book/book_details/${product._id}`);
+    router.push(`/book/book_dateils/${product._id}`);
   };
+
 
   const handleAddToCart = (e) => {
     const cookiedata = Cookies.get("book_vault");
 
     if (!cookiedata) {
-      return Swal.fire({
-        icon: "error",
-        title: "Access Denied",
-        text: "You must be logged in to add product to cart.",
-      });
+        return Swal.fire({
+            icon: "error",
+            title: "Access Denied",
+            text: "You must be logged in to add product to cart.",
+        });
     }
 
     const userData = JSON.parse(cookiedata);
 
     const data = {
-      user: userData.userId,
-      book: product._id, // Ensure productId is passed correctly
-      // name: product.name,
-      // image: product.frontimg,
+        user: userData.userId,
+        book: product._id, // Ensure productId is passed correctly
+
     };
     console.log(data)
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/cart/create-cart`, data)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error('Error in adding to cart',err);
-      })
-    // async (data) => {
-    //   try {
-    //     const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/cart/create-cart`, data);
-    //     return response.data;
-    //   } catch (error) {
-    //     console.log(error);
-
-    //   }
-    // }
-
-    // dispatch(addCart(data));
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.error('Error in adding to cart', err);
+        })
     toast.success(data.message || ' Product added successfully!');
     dispatch(fatchCart(userData.userId));
-  };
+};
+
+
 
   return (
     <div className="relative group mb-20 ms-10 w-full overflow-hidden rounded-xl border-t-2 bg-white shadow-xl">
@@ -110,9 +102,9 @@ const Card = ({ product, filePath }) => {
         </div>
 
         <div onClick={handleAddToCart} className="flex items-center justify-center cursor-pointer gap-3 rounded-md bg-slate-900 px-4 py-2.5 text-sm font-medium text-white text-center hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-          <IoIosCart />
-          Add To Cart
-        </div>
+                <IoIosCart />
+                Add To Cart
+            </div>
       </div>
     </div>
   );

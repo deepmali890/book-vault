@@ -13,10 +13,9 @@ const page = () => {
 
   const books = useSelector((state) => state.allBooks.value);
   const author_filepath = useSelector((state) => state.author.value);
-  console.log("bookssss===>>>>", books)
+ 
   const filteredBooks = books.data && books.data.filter((book) => book.authors._id === authorId);
-  // console.log('>>>>->=>>', filteredBooks && filteredBooks[0])
-  // console.log('Filepath=>',filepath , filepath + (filteredBooks && filteredBooks[0].authors.thumbnail));
+
 
 
 

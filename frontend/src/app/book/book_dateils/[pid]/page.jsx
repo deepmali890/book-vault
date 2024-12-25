@@ -6,21 +6,30 @@ import React, { useEffect, useState } from 'react'
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactReader } from 'react-reader'
+import { RiBookShelfFill, RiPlayCircleFill } from 'react-icons/ri';
+import { GoStarFill } from 'react-icons/go';
+import { CiStar } from "react-icons/ci";
+import { FaBookOpenReader } from 'react-icons/fa6';
+import { IoIosCart } from 'react-icons/io';
+import { createComment, showComment } from '@/app/redux/slices/commentDetailsSlice';
+
 
 
 const page = () => {
   const id = useParams();
   const dispatch = useDispatch()
-  let [product, setProduct] = useState({});
+  let [book, setBook] = useState({});
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [filepath, setFilepath] = useState('')
   const Route = useRouter()
   const [windowWidth, setWindowWidth] = useState(undefined);
+  const [comments, setComment] = useState({})
+  const [commentData, setCommentData] = useState([])
 
   useEffect(() => {
     setWindowWidth(window.innerWidth); // Client-side code
   }, []);
-  // console.log(params)
+
 
 
   const books = useSelector((state) => state.allBooks.value)
@@ -29,22 +38,20 @@ const page = () => {
     dispatch(fatchBook())
   }, [dispatch])
 
-  // console.log("shanti",books)
 
   useEffect(() => {
 
     if (!(JSON.stringify(books) === '{}')) {
-      const bookbyParam = books.data.filter((product) => product._id === id.pid);
+      const bookbyParam = books.data.filter((item) => item._id === id.pid);
 
-      if (bookbyParam[0]) setProduct(bookbyParam[0]);
+      if (bookbyParam[0]) setBook(bookbyParam[0]);
       setFilepath(books.filepath)
-      // console.log('product',productbyParam[0])
-      // console.log('FILEPATH',filepath)
+
 
     }
 
   }, [books])
-  console.log(product)
+
 
   const handleSubscribe = () => {
     if (!isSubscribed) {
@@ -54,9 +61,24 @@ const page = () => {
     }
     else {
       // Allow access to the book
-      window.open(filepath + product.pdf);
+      window.open(filepath + book.pdf);
     }
   }
+
+
+  const handleComment = (e) => {
+    e.preventDefault()
+    dispatch(createComment(comments))
+    console.log(comments)
+  }
+
+  const allComments = useSelector((state) => state.app.comments)
+  console.log('mere comments', allComments)
+
+  useEffect(() => {
+    dispatch(showComment())
+  }, [dispatch])
+
 
 
   if (windowWidth === undefined) {
@@ -90,12 +112,12 @@ const page = () => {
 
           <div className="lg:col-span-3 h-full flex gap-2 p-8">
             <div className="relative hover:scale-110 duration-[0.3s]  h-full flex items-center justify-center lg:min-h-[580px]">
-              <img src={filepath + product.frontimg} alt="Product" className="lg:w-3/5 w-3/4 h-full object-contain max-lg:p-8" />
+              <img src={filepath + book.frontimg} alt="book" className="lg:w-3/5 w-3/4 h-full object-contain max-lg:p-8" />
 
 
             </div>
             <div className="relative h-full hover:scale-110 duration-[0.3s]  flex items-center justify-center lg:min-h-[580px]">
-              <img src={filepath + product.backimg} alt="Product" className="lg:w-3/5 w-3/4 h-full object-contain max-lg:p-8" />
+              <img src={filepath + book.backimg} alt="book" className="lg:w-3/5 w-3/4 h-full object-contain max-lg:p-8" />
 
 
             </div>
@@ -103,47 +125,27 @@ const page = () => {
 
           <div className="lg:col-span-2 bg-gray-100 py-6 px-8 h-full">
             <div>
-              <h2 className="text-2xl font-bold text-gray-800">{product.name}</h2>
+              <h2 className="text-2xl font-bold text-gray-800">{book.name}</h2>
 
               <div className="flex space-x-1 mt-2">
-                <svg className="w-4 fill-gray-800" viewBox="0 0 14 13" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg className="w-4 fill-gray-800" viewBox="0 0 14 13" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg className="w-4 fill-gray-800" viewBox="0 0 14 13" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg className="w-4 fill-gray-800" viewBox="0 0 14 13" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg className="w-4 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
+                <GoStarFill className='text-yellow-400' />
+                <GoStarFill className='text-yellow-400' />
+                <GoStarFill className='text-yellow-400' />
+                <GoStarFill className='text-yellow-400' />
+                <CiStar />
               </div>
             </div>
 
             <div className="mt-8">
               <h3 className="text-lg font-bold text-gray-800">Price</h3>
               <div className="flex gap-4 w-full">
-                <p className="text-gray-800 text-3xl font-bold mt-4">₹ {product.price}</p>
-                <p className="text-gray-600 text-3xl font-bold mt-4 line-through">₹ {product.mrp}</p>
+                <p className="text-gray-800 text-3xl font-bold mt-4">₹ {book.price}</p>
+                <p className="text-gray-600 text-3xl font-bold mt-4 line-through">₹ {book.mrp}</p>
               </div>
             </div>
 
 
-
+            {/* 
             <div className="mt-8">
               <h3 className="text-lg font-bold text-gray-800">Quantity</h3>
               <div className="flex divide-x border w-max mt-4 rounded overflow-hidden">
@@ -161,15 +163,16 @@ const page = () => {
                   </svg>
                 </button>
               </div>
-            </div>
+            </div> */}
 
             <div className="flex flex-wrap gap-4 mt-8">
 
-              <button onClick={handleSubscribe} type="button" className="min-w-[200px] px-4 py-3 bg-gray-800 hover:bg-gray-900 text-white text-sm font-semibold rounded">
-                Read now
+              <button onClick={handleSubscribe} type="button" className="min-w-[200px] flex gap-2 items-center justify-center px-4 py-3 bg-gray-800  hover:bg-gray-700 text-white text-sm font-semibold rounded">
+                <FaBookOpenReader />
+                Read Now
 
               </button>
-              <button type="button" className="min-w-[200px] px-4 py-2.5 border border-gray-800 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded">Add to cart</button>
+              <button type="button" className="min-w-[200px] px-4 py-2.5 border border-gray-800 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded flex justify-center items-center gap-2"> <IoIosCart /> Add To Cart </button>
             </div>
 
 
@@ -192,7 +195,7 @@ const page = () => {
             </div>
 
             <div className="w-full mt-8 ">
-              <div className="text-2xl font-semibold translate-x-3">
+              <div className="text-2xl font-semibold translate-x-3 mb-4">
                 Audio Reads
               </div>
               <div className="flex items-center justify-center  bg-red-lightest">
@@ -204,13 +207,13 @@ const page = () => {
                     <div className="w-full p-8">
                       <div className="flex items-center justify-between">
                         <div>
-                          <h3 className="text-1xl text-grey-darkest font-medium">{product.name}</h3>
+                          <h3 className="text-1xl text-grey-darkest font-medium">{book.name}</h3>
                           {
-                            product.book_category?.name
+                            book.book_category?.name
                           }
                         </div>
-                        <Link href={`/pages/audio/audio-details/${product._id}`}>   <div className="text-7xl cursor-pointer">
-                          <IoPlayCircleSharp />
+                        <Link href={`/pages/audio/audio-details/${book._id}`}>   <div className="text-7xl cursor-pointer">
+                          <RiPlayCircleFill className=' text-gray-800 ' />
                         </div>
                         </Link>
                       </div>
@@ -224,7 +227,12 @@ const page = () => {
           </div>
         </div>
 
-        <div className="mt-8 max-w-2xl px-6">
+
+      </div>
+
+      <section className="mt-8 px-6 grid grid-cols-2 gap-2 mb-20 ">
+
+        <div className="">
           <h3 className="text-lg font-bold text-gray-800">Book Features</h3>
 
           <ul className="grid sm:grid-cols-2 gap-3 mt-4">
@@ -282,14 +290,65 @@ const page = () => {
 
           <div className="mt-8">
             <h3 className="text-lg font-bold text-gray-800">Book Description</h3>
-            <p className="text-sm text-gray-600 mt-4">{product.description}</p>
+            <p className="text-sm text-gray-600 mt-4">{book.description}</p>
           </div>
         </div>
-      </div>
+
+        <div className=' rounded-xl border-[1px] border-gray-900'>
+          <section className="bg-white dark:bg-gray-900  py-4 antialiased">
+            <div className="max-w-2xl mx-auto px-4">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Comment</h2>
+              </div>
+              <form className="mb-6" onSubmit={handleComment}>
+                <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                  <label htmlFor="comment" className="sr-only">Your comment</label>
+                  <textarea id="comment" rows="3"
+                    onChange={(e) => { setComment({ ...comments, name: e.target.value }) }}
+                    name='name'
+                    className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                    placeholder="Write a comment..." required></textarea>
+                </div>
+                <button type="submit"
+                  className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white  bg-gray-800 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                  Post comment
+                </button>
+              </form>
+              <article className="text-base bg-white rounded-lg dark:bg-gray-900">
+                {allComments && allComments.length > 0 ? (
+                  allComments.map((item,index) => (
+                    <div key={index}>
+                      <p className='text-gray-500 dark:text-gray-400 my-6'> {index+1}. {item.data.name}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>No comments available.</p>
+                )}
+
+
+           
+                <div className="flex items-center mt-4 space-x-4">
+                  <button type="button"
+                    className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium">
+                    <svg className="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z" />
+                    </svg>
+                    Reply
+                  </button>
+                </div>
+              </article>
+
+
+
+            </div>
+          </section>
+        </div>
+
+      </section>
 
 
       <div className="font-sans bg-white py-4 mx-auto lg:max-w-7xl md:max-w-4xl">
-        <h2 className="text-4xl font-extrabold text-gray-800 text-center mb-16">Feature Products</h2>
+        <h2 className="text-4xl font-extrabold text-gray-800 justify-center items-center mb-16 flex gap-2">Similar Books <RiBookShelfFill /></h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-sm:justify-center gap-y-8 gap-x-6">
 
           <div className="flex gap-6 overflow-hidden cursor-pointer">

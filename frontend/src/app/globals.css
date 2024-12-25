@@ -14,6 +14,27 @@
 .showCat::-webkit-scrollbar {
   display: none;
 }
+.carts {
+  overflow: auto; /* Ensure the element can scroll */
+}
+
+/* Customize the scrollbar */
+.carts::-webkit-scrollbar {
+  width: 8px; /* Adjust scrollbar width */
+}
+
+.carts::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background color of the scrollbar track */
+}
+
+.carts::-webkit-scrollbar-thumb {
+  background: #090f1b; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners for the thumb */
+}
+
+.carts::-webkit-scrollbar-thumb:hover {
+  background: #04070D; /* Change color when hovering over the scrollbar */
+}
 
 .underSign{
   /* position: fixed; */
@@ -51,6 +72,7 @@ react-hot-toast {
 .slick-slide {
 padding: 0px 10px
 }
+
 
 /* From Uiverse.io by gustavofusco */ 
 
