@@ -74,7 +74,6 @@ const page = () => {
   }
 
   const allComments = useSelector((state) => state.app.comments)
-  console.log('mere comments', allComments)
 
   useEffect(() => {
     dispatch(showComment())

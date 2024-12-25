@@ -48,7 +48,7 @@ const readCart = async (req, res, next) => {
 
 
         const data = await Cart.find(req.params).populate('book');
-        console.log('Cart Data : ',data);
+        // console.log('Cart Data : ',data);
 
 
         const filepath = `${req.protocol}://${req.get('host')}/book-files/`;
@@ -57,19 +57,20 @@ const readCart = async (req, res, next) => {
     } catch (error) {
         console.error(error);
         next(error);
-        return res.status(500).json({ message: 'Error reading cart' });
+         res.status(500).json({ message: 'Error reading cart' });
     }
 };
 
 const deleteCart = async (req,res,next)=>{
     try {
         const data = await Cart.deleteOne(req.params)
-        
+
+          res.status(200).json({ message: 'success',data });
     } 
     catch (error) {
         console.error(error);
         next(error);  // Pass the error to the next middleware for centralized error handling
-        return res.status(500).json({ message: 'Error creating cart' });
+         res.status(500).json({ message: 'Error creating cart' });
     }
 }
 

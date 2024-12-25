@@ -17,6 +17,7 @@ const teamRouter = require('./admin/team');
 const cartRouter = require('./website/cart');
 const userRouter = require('./website/user');
 const sliderRouterForWeb = require('./website/slider');
+const paymentOutRouter = require('./website/paymentRoutes');
 
 const adminRouter = express.Router();
 const websiteRouter = express.Router();
@@ -42,6 +43,7 @@ websiteRouter.use('/allbooks',bookWebRouter)
 websiteRouter.use('/cart',cartRouter)
 websiteRouter.use('/user',userRouter)
 websiteRouter.use('/slider-web',sliderRouterForWeb)
+websiteRouter.use('/payment',paymentOutRouter)
 
 
 module.exports={

@@ -25,6 +25,15 @@ const Card = ({ product, filePath }) => {
         text: "You must be logged in to view product details.",
       });
     }
+
+
+    // Store this product in localStorage or cookies for recently viewed products
+    const recentlyViewed = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
+    if (!recentlyViewed.some(p => p._id === product._id)) {
+      recentlyViewed.push(product);
+      localStorage.setItem("recentlyViewed", JSON.stringify(recentlyViewed));
+    }
+    
     router.push(`/book/book_dateils/${product._id}`);
   };
 
@@ -33,31 +42,31 @@ const Card = ({ product, filePath }) => {
     const cookiedata = Cookies.get("book_vault");
 
     if (!cookiedata) {
-        return Swal.fire({
-            icon: "error",
-            title: "Access Denied",
-            text: "You must be logged in to add product to cart.",
-        });
+      return Swal.fire({
+        icon: "error",
+        title: "Access Denied",
+        text: "You must be logged in to add product to cart.",
+      });
     }
 
     const userData = JSON.parse(cookiedata);
 
     const data = {
-        user: userData.userId,
-        book: product._id, // Ensure productId is passed correctly
+      user: userData.userId,
+      book: product._id, // Ensure productId is passed correctly
 
     };
     console.log(data)
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/cart/create-cart`, data)
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((err) => {
-            console.error('Error in adding to cart', err);
-        })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error('Error in adding to cart', err);
+      })
     toast.success(data.message || ' Product added successfully!');
     dispatch(fatchCart(userData.userId));
-};
+  };
 
 
 
@@ -102,9 +111,9 @@ const Card = ({ product, filePath }) => {
         </div>
 
         <div onClick={handleAddToCart} className="flex items-center justify-center cursor-pointer gap-3 rounded-md bg-slate-900 px-4 py-2.5 text-sm font-medium text-white text-center hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-                <IoIosCart />
-                Add To Cart
-            </div>
+          <IoIosCart />
+          Add To Cart
+        </div>
       </div>
     </div>
   );

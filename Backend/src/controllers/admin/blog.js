@@ -4,14 +4,14 @@ const createBlog = async (req, res) => {
     try {
         const data = req.body;
 
-        if(req.files){
-            if(req.files.profile) data.profile = req.files.profile[0].filename;
-            if(req.files.thumbnail) data.thumbnail = req.files.thumbnail[0].filename;
+        if (req.files) {
+            if (req.files.profile) data.profile = req.files.profile[0].filename;
+            if (req.files.thumbnail) data.thumbnail = req.files.thumbnail[0].filename;
         }
 
         const dataToSave = new Blog(data);
         const response = await dataToSave.save();
-        res.status(200).json({ message: "success", data:response });
+        res.status(200).json({ message: "success", data: response });
 
     }
     catch (error) {
@@ -52,7 +52,7 @@ const updateBlogStatus = async (req, res) => {
     }
 }
 
-module.exports ={
+module.exports = {
     createBlog,
     readBlog,
     updateBlogStatus

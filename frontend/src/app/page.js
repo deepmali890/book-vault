@@ -10,6 +10,7 @@ import Blog from "./home/Blog";
 import { motion } from "framer-motion";
 import { AuroraBackground } from "./components/ui/aurora-background";
 import { useEffect, useState } from "react";
+import RecentViewBook from "./home/RecentViewBook";
 
 
 export default function Home() {
@@ -67,6 +68,7 @@ export default function Home() {
 
 
       <HeroSection />
+      <RecentViewBook/>
       <Features />
       <NewArrivels />
       <Author />
