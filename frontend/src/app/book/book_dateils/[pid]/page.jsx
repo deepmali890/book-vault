@@ -12,6 +12,7 @@ import { CiStar } from "react-icons/ci";
 import { FaBookOpenReader } from 'react-icons/fa6';
 import { IoIosCart } from 'react-icons/io';
 import { createComment, showComment } from '@/app/redux/slices/commentDetailsSlice';
+import Cookies from 'js-cookie';
 
 
 
@@ -78,6 +79,38 @@ const page = () => {
   useEffect(() => {
     dispatch(showComment())
   }, [dispatch])
+
+
+  
+  const handleAddToCart = (e) => {
+    const cookiedata = Cookies.get("book_vault");
+
+    if (!cookiedata) {
+        return Swal.fire({
+            icon: "error",
+            title: "Access Denied",
+            text: "You must be logged in to add product to cart.",
+        });
+    }
+
+    const userData = JSON.parse(cookiedata);
+
+    const data = {
+        user: userData.userId,
+        book: pid, // Ensure productId is passed correctly
+
+    };
+    console.log(data)
+    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/cart/create-cart`, data)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.error('Error in adding to cart', err);
+        })
+    toast.success(data.message || ' Product added successfully!');
+    dispatch(fatchCart(userData.userId));
+};
 
 
 
@@ -172,7 +205,7 @@ const page = () => {
                 Read Now
 
               </button>
-              <button type="button" className="min-w-[200px] px-4 py-2.5 border border-gray-800 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded flex justify-center items-center gap-2"> <IoIosCart /> Add To Cart </button>
+              <button onClick={handleAddToCart} type="button" className="min-w-[200px] px-4 py-2.5 border border-gray-800 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded flex justify-center items-center gap-2"> <IoIosCart /> Add To Cart </button>
             </div>
 
 

@@ -20,7 +20,7 @@ const SignUp = ({ loginStatus, setLoginStatus }) => {
     <>
       <div className={`${loginStatus ? "opacity-100 visible fixed z-[9999999] w-full " : "opacity-0 invisible fixed "} duration-500 top-0`}>
         <div className="w-full h-screen   bg-[rgba(0,0,0,0.7)] ">
-          <div className="w-[600px] h-screen absolute right-0 bg-white overflow-y-auto">
+          <div className="w-[600px] h-screen absolute right-0 bg-white rounded-s-3xl overflow-y-auto">
             <div className="w-full flex justify-end text-3xl">
 
               <div className=" cursor-pointer p-4"><RxCross2 onClick={() => setLoginStatus(!loginStatus)} /></div>

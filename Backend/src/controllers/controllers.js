@@ -106,6 +106,7 @@ const { readBookWeb } = require("./website/bookControllers");
 const { cretaeTeam, readTeam } = require("./admin/team");
 const { createCart, readCart, deleteCart } = require("./website/cartControllers");
 const { regsiterUser, loginUser } = require("./website/user");
+const { readSliderWeb } = require("./website/slider");
 
 module.exports = {
     createParentCategory,
@@ -190,7 +191,8 @@ module.exports = {
     regsiterUser,
     loginUser,
     readCart,
-    deleteCart
+    deleteCart,
+    readSliderWeb
     
     
 }

@@ -59,7 +59,7 @@ export const commentSlice = createSlice({
                 state.error = null
             })
             .addCase(createComment.fulfilled, (state, action) => {
-                state.comments.push (action.payload) ;
+                state.comments.push (action.payload);
                 state.loading = false;
                 state.error = null
             })

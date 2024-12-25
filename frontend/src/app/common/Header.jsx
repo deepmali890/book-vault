@@ -74,7 +74,7 @@ const Header = () => {
 
   return (
     <>
-      <header className='max-w-full p-0  shadow-lg py-1 sticky top-0 left-0 z-[999] bg-gradient-to-r  bg-white  border-gray-300'>
+      <header className='max-w-full p-0  shadow-lg py-1 sticky top-0 left-0 z-[9999] bg-gradient-to-r  bg-white/30 backdrop-blur-md  border-gray-300'>
         <nav className='flex max-w-full justify-between px-10 '>
           <aside className=' w-[60%] px-5  flex gap-10 items-center   '>
             <figure>
@@ -84,10 +84,10 @@ const Header = () => {
               <ul className='flex items-center gap-14  font-semibold'>
                 <li onClick={() => setCategoryStatus(true)} className='cursor-pointer flex gap-2 items-center '> <FaBars /> Categories </li>
                 <Link href={'/allProduct'}> <li className='cursor-pointer flex gap-2 items-center'>Shop <IoLibrarySharp /></li></Link>
-                <Link href={'/pages/author'}><li className='cursor-pointer flex gap-2 items-center'>Author <HiPencilSquare /></li></Link>
-                <Link href={'/pages/about'}> <li className='cursor-pointer flex gap-2 items-center '>About <TbListDetails /> </li> </Link>
-                <Link href={'/pages/blog'}> <li className='cursor-pointer flex items-center gap-2'>Blog <HiNewspaper /></li></Link>
-                <Link href={'/pages/contact'}><li className='cursor-pointer flex gap-2 items-center'>Contact <MdOutlineConnectWithoutContact /></li></Link>
+                <Link href={'/pages/author'}><li className='cursor-pointer  gap-2 items-center sm:hidden lg:flex'>Author <HiPencilSquare /></li></Link>
+                <Link href={'/pages/about'}> <li className='cursor-pointer  gap-2 items-center sm:hidden lg:flex '>About <TbListDetails /> </li> </Link>
+                <Link href={'/pages/blog'}> <li className='cursor-pointer  items-center gap-2 sm:hidden lg:flex'>Blog <HiNewspaper /></li></Link>
+                <Link href={'/pages/contact'}><li className='cursor-pointer  gap-2 items-center sm:hidden lg:flex'>Contact <MdOutlineConnectWithoutContact /></li></Link>
               </ul>
             </div>
           </aside>

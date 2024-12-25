@@ -23,7 +23,8 @@ export const CarouselContext = createContext({
 
 export const Carousel = ({
   items,
-  initialScroll = 0
+  initialScroll = 0,
+  filepath
 }) => {
   const carouselRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -140,7 +141,8 @@ export const Carousel = ({
 export const Card = ({
   card,
   index,
-  layout = false
+  layout = false,
+  filepath
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
@@ -189,7 +191,7 @@ export const Card = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               ref={containerRef}
-              layoutId={layout ? `card-${card.title}` : undefined}
+              layoutId={layout ? `card-${card.sub_heading}` : undefined}
               className="max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit  z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative">
               <button
                 className="sticky top-4 h-8 w-8 right-0 ml-auto bg-black dark:bg-white rounded-full flex items-center justify-center"
@@ -197,41 +199,41 @@ export const Card = ({
                 <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
               </button>
               <motion.p
-                layoutId={layout ? `category-${card.title}` : undefined}
+                layoutId={layout ? `category-${card.sub_heading}` : undefined}
                 className="text-base font-medium text-black dark:text-white">
-                {card.category}
+                {card.heading}
               </motion.p>
               <motion.p
-                layoutId={layout ? `title-${card.title}` : undefined}
+                layoutId={layout ? `title-${card.sub_heading}` : undefined}
                 className="text-2xl md:text-5xl font-semibold text-neutral-700 mt-4 dark:text-white">
-                {card.title}
+                {card.sub_heading}
               </motion.p>
-              <div className="py-10">{card.content}</div>
+              <div className="py-10">{card.description}</div>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
       <motion.button
-        layoutId={layout ? `card-${card.title}` : undefined}
+        layoutId={layout ? `card-${card.heading}` : undefined}
         onClick={handleOpen}
         className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10">
         <div
           className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
         <div className="relative z-40 p-8">
           <motion.p
-            layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-white text-sm md:text-base font-medium font-sans text-left">
-            {card.category}
+            layoutId={layout ? `category-${card.heading}` : undefined}
+            className="text-white text-[16px] md:text-base font-medium font-sans text-left">
+            {card.heading}
           </motion.p>
           <motion.p
-            layoutId={layout ? `title-${card.title}` : undefined}
-            className="text-white text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2">
-            {card.title}
+            layoutId={layout ? `title-${card.sub_heading}` : undefined}
+            className="text-white sm:text-[14px] md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2">
+            {card.sub_heading}
           </motion.p>
         </div>
         <BlurImage
-          src={card.src}
-          alt={card.title}
+          src={filepath + card.thumbnail}
+          alt={card.heading}
           fill
           className="object-cover absolute z-10 inset-0" />
       </motion.button>
@@ -244,6 +246,7 @@ export const BlurImage = ({
   width,
   src,
   className,
+  filepath,
   alt,
   ...rest
 }) => {

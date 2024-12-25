@@ -8,6 +8,7 @@ import { featureBookCategory } from '../redux/slices/featureBookCategorySlice';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from 'next/link';
 
 const Features = () => {
 
@@ -44,7 +45,7 @@ const Features = () => {
                 breakpoint: 1024, // For screens smaller than 1024px
                 settings: {
                     slidesToShow: 3, // Show 3 slides on smaller screens
-                    slidesToScroll: 1, 
+                    slidesToScroll: 1,
                     dots: true, // Still show dots on smaller screens
                 }
             },
@@ -58,7 +59,7 @@ const Features = () => {
             }
         ]
     };
-    
+
 
     return (
         <div>
@@ -70,13 +71,14 @@ const Features = () => {
 
                 <Slider {...settings}>
                     {
-                        featureBookCats.map((items,index)=>(
+                        featureBookCats.map((items, index) => (
                             <div className='my-10 ' key={index}>
-                        <div className=' w-full h-full rounded-md'>
-                            <img className='w-[300px] h-[500px] rounded-md scale-95  hover:scale-105 duration-[0.5s] cursor-pointer  object-cover' src={filepath + items.thumbnail} alt="Mens Jackets" />
-                            <h5 className='text-[15px] mt-2 font-semibold'>{items.name}</h5>
-                        </div>
-                    </div>
+                                <Link href={`/subCategory/${items.slug}`} >   <div className=' w-full h-full rounded-md'>
+                                    <img className='w-[300px] h-[500px] rounded-md scale-95  hover:scale-105 duration-[0.5s] cursor-pointer  object-cover' src={filepath + items.thumbnail} alt="Mens Jackets" />
+                                    <h5 className='text-[15px] mt-2 font-semibold'>{items.name}</h5>
+                                </div>
+                                </Link>
+                            </div>
                         ))
                     }
                 </Slider>

@@ -62,7 +62,7 @@ const Card = ({ product, filePath }) => {
 
 
   return (
-    <div className="relative group mb-20 ms-10 w-full overflow-hidden rounded-xl border-t-2 bg-white shadow-xl">
+    <div className="relative group mb-20 ms-10 w-full overflow-hidden rounded-xl border-t-2 bg-white/30 backdrop-blur-sm shadow-xl">
       <img
         onClick={handleProductDetails}
         className="h-60 rounded-t-lg scale-95 cursor-pointer hover:scale-105 duration-[0.5s] mx-auto object-cover"
