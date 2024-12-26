@@ -102,6 +102,8 @@ const page = () => {
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/cart/create-cart`, data)
         .then((res) => {
             console.log(res);
+            console.log('Added to Cart')
+            dispatch(fatchCart(userData.userId));
         })
         .catch((err) => {
             console.error('Error in adding to cart', err);

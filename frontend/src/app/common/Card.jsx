@@ -12,6 +12,7 @@ import AddToCart from "../components/ui/AddToCart";
 
 const Card = ({ product, filePath }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
 
   // Handle navigation to product details
@@ -60,6 +61,7 @@ const Card = ({ product, filePath }) => {
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/cart/create-cart`, data)
       .then((res) => {
         console.log(res);
+        dispatch(fatchCart(userData.userId));
       })
       .catch((err) => {
         console.error('Error in adding to cart', err);
