@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com', 'localhost'], // Allow images from Unsplash and localhost
+    domains: ['images.unsplash.com', 'localhost', 'book-vault-akpi.vercel.app'], // Allow images from Unsplash and localhost
   },
   webpack(config) {
     config.module.rules.push({

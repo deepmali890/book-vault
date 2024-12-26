@@ -55,7 +55,7 @@ export const AnimatedTestimonials = ({ bookData, filepath, autoplay = false }) =
                     z: isActive(index) ? 0 : -100,
                     rotate: isActive(index) ? 0 : randomRotateY(index),
                     zIndex: isActive(index)
-                      ? 999
+                      ? 99
                       : bookData.length + 2 - index,
                     y: isActive(index) ? [0, -80, 0] : 0,
                   }}

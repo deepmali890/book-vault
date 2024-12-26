@@ -13,6 +13,8 @@ import { FaBookOpenReader } from 'react-icons/fa6';
 import { IoIosCart } from 'react-icons/io';
 import { createComment, showComment } from '@/app/redux/slices/commentDetailsSlice';
 import Cookies from 'js-cookie';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 
 
@@ -47,10 +49,7 @@ const page = () => {
 
       if (bookbyParam[0]) setBook(bookbyParam[0]);
       setFilepath(books.filepath)
-
-
     }
-
   }, [books])
 
 
@@ -96,7 +95,7 @@ const page = () => {
 
     const data = {
         user: userData.userId,
-        book: pid, // Ensure productId is passed correctly
+        book: id.pid, // Ensure productId is passed correctly
 
     };
     console.log(data)

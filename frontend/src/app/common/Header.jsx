@@ -74,7 +74,7 @@ const Header = () => {
 
   return (
     <>
-      <header className='max-w-full p-0  shadow-lg py-1 sticky top-0 left-0 z-[9999] bg-gradient-to-r  bg-white/30 backdrop-blur-md  border-gray-300'>
+      <header className='max-w-full p-0  shadow-lg py-1 sticky top-0 left-0 z-[999] bg-gradient-to-r  bg-white/30 backdrop-blur-md  border-gray-300'>
         <nav className='flex max-w-full justify-between px-10 '>
           <aside className=' w-[60%] px-5  flex gap-10 items-center   '>
             <figure>
