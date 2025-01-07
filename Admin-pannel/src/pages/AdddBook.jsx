@@ -67,7 +67,7 @@ const AdddBook = () => {
   const handleAddBook = (e) => {
     e.preventDefault();
     axios.post(`${import.meta.env.VITE_APP_API_HOST}/api/admin-panel/book/create-book`, e.target)
-      .then(response => {
+      .then((response )=> {
         console.log(response.data)
         let timerInterval;
         Swal.fire({
@@ -92,6 +92,7 @@ const AdddBook = () => {
       })
       .catch(error => {
         console.error(error);
+        console.log(error)
       });
   }
   return (
