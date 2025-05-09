@@ -17,11 +17,19 @@ import Swal from 'sweetalert2'
 
 const AdddBook = () => {
 
+
+  // for navigation to anthor page 
+
+
   const nav = useNavigate()
 
   const [parentCategory, setParentCategory] = useState([])
   const [bookCategory, setBookCategory] = useState([])
   const [author, setAuthor] = useState([])
+
+
+
+  // add parentcategory
 
 
   const fatchParentCategory = () => {
@@ -37,6 +45,9 @@ const AdddBook = () => {
 
   }
 
+
+  // add Book category 
+
   const fatchBookCategory = () => {
     axios.get(`${import.meta.env.VITE_APP_API_HOST}/api/admin-panel/book-category/active-book-category`)
       .then(response => {
@@ -46,9 +57,10 @@ const AdddBook = () => {
       .catch(error => {
         console.error(error);
       });
-
-
   }
+
+
+  // add author //
 
   const fatchAuthor = () => {
     axios.get(`${import.meta.env.VITE_APP_API_HOST}/api/admin-panel/author/active-author`)
@@ -64,6 +76,9 @@ const AdddBook = () => {
   }
   useEffect(() => { fatchParentCategory(); fatchBookCategory(), fatchAuthor() }, [])
 
+
+  //  handlea dd book // 
+  
   const handleAddBook = (e) => {
     e.preventDefault();
     axios.post(`${import.meta.env.VITE_APP_API_HOST}/api/admin-panel/book/create-book`, e.target)
@@ -86,8 +101,10 @@ const AdddBook = () => {
             clearInterval(timerInterval);
           }
         }).then((result) => {
+
           /* Read more about handling dismissals below */
-          nav('/dashboard/book/view-book')
+          nav('/dashboard/book/view-book') 
+
         });
       })
       .catch(error => {
@@ -95,6 +112,8 @@ const AdddBook = () => {
         console.log(error)
       });
   }
+
+
   return (
     <div className="w-[90%] mx-auto my-[40px] bg-white border rounded-[10px] overflow-y-auto">
       <span className="bg-[#f8f8f9] rounded-[10px_10px_0_0] border-b p-[8px_16px] text-[20px] font-bold block text-[#303640]">
@@ -137,6 +156,8 @@ const AdddBook = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
+
+
                   {/* <SelectLabel>Fruits</SelectLabel> */}
                   {
                     parentCategory.map((pCategory, index) => (
@@ -160,6 +181,8 @@ const AdddBook = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
+
+                  
                   {/* <SelectLabel>Fruits</SelectLabel> */}
                   {
                     bookCategory.map((BCategory, index) => (
