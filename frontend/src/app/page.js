@@ -70,7 +70,7 @@ export default function Home() {
       <HeroSection />
       <RecentViewBook/>
       <Features />
-      <NewArrivels />
+      {/* <NewArrivels /> */}
       <Author />
       <Audio />
       <OutStory />

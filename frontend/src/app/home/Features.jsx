@@ -1,91 +1,85 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-// import { Cover } from "../components/ui/cover";
-import { MdOutlineCategory } from "react-icons/md";
-import { Cover } from '../components/ui/cover';
-import { useDispatch, useSelector } from 'react-redux';
-import { featureBookCategory } from '../redux/slices/featureBookCategorySlice';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Link from 'next/link';
+import { MdOutlineCategory } from "react-icons/md"
+import { Cover } from '../components/ui/cover'
+import { useDispatch, useSelector } from 'react-redux'
+import { featureBookCategory } from '../redux/slices/featureBookCategorySlice'
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import Link from 'next/link'
 
 const Features = () => {
-
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const [featureBookCats, setFeatureBookCats] = useState([])
     const [filepath, setFilePath] = useState('')
 
     const featureBook = useSelector((state) => state.featureBook.value)
-    // console.log("niku", featureBook)
-
 
     useEffect(() => {
         dispatch(featureBookCategory())
     }, [dispatch])
 
     useEffect(() => {
-        if (featureBook.data) setFeatureBookCats(featureBook.data);
-
-        setFilePath(featureBook.filepath)
+        if (featureBook.data) setFeatureBookCats(featureBook.data)
+        if (featureBook.filepath) setFilePath(featureBook.filepath)
     }, [featureBook])
 
     const settings = {
-        dots: false,               // Displays navigation dots below the slider.
-        infinite: true,           // Enables infinite loop for slides. After the last slide, it loops back to the first.
-        speed: 500,               // Duration (in milliseconds) of transition between slides.
-        slidesToShow: 4,          // Number of slides to show at once in the carousel.
-        slidesToScroll: 1,        // Number of slides to scroll at a time.
-        autoPlay: true,           // Enables autoplay of the carousel/slider. The slides will change automatically.
-        autoplaySpeed: 1000,      // Speed of autoplay transition in milliseconds (this is optional but often used with autoplay).
-        pauseOnHover: true,       // Pauses autoplay when hovering over the carousel.
-        arrows: true,             // Displays navigation arrows for manual slide control.
-        responsive: [             // Allows you to define breakpoints for responsiveness on different screen sizes.
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        pauseOnHover: true,
+        arrows: true,
+        responsive: [
             {
-                breakpoint: 1024, // For screens smaller than 1024px
-                settings: {
-                    slidesToShow: 3, // Show 3 slides on smaller screens
-                    slidesToScroll: 1,
-                    dots: true, // Still show dots on smaller screens
-                }
+                breakpoint: 1280,
+                settings: { slidesToShow: 3 }
             },
             {
-                breakpoint: 600,  // For screens smaller than 600px
-                settings: {
-                    slidesToShow: 1,  // Show 1 slide on very small screens
-                    slidesToScroll: 1,
-                    dots: false,  // Dots are hidden on very small screens
-                }
+                breakpoint: 1024,
+                settings: { slidesToShow: 2 }
+            },
+            {
+                breakpoint: 640,
+                settings: { slidesToShow: 1 }
             }
         ]
-    };
-
+    }
 
     return (
-        <div>
-            <section className='max-w-[1460px] mx-auto py-[50px]'>
-                <h3 className='text-center text-6xl font-medium'>
-                    <Cover className="mx-auto flex gap-4">Featured Categories <MdOutlineCategory /></Cover>
+        <div className="w-full px-6 sm:px-6 md:px-10 lg:px-16 xl:px-20">
+            <section className="max-w-[1460px] mx-auto py-10 sm:py-14 md:py-20">
+                <h3 className="text-center text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-800">
+                    <Cover className="flex justify-center items-center gap-3">
+                        Featured Categories <MdOutlineCategory className="text-indigo-600 text-3xl" />
+                    </Cover>
                 </h3>
 
-
-                <Slider {...settings}>
-                    {
-                        featureBookCats.map((items, index) => (
-                            <div className='my-10 ' key={index}>
-                                <Link href={`/subCategory/${items.slug}`} >   <div className=' w-full h-full rounded-md'>
-                                    <img className='w-[300px] h-[500px] rounded-md scale-95  hover:scale-105 duration-[0.5s] cursor-pointer  object-cover' src={filepath + items.thumbnail} alt="Mens Jackets" />
-                                    <h5 className='text-[15px] mt-2 font-semibold'>{items.name}</h5>
-                                </div>
+                <div className="mt-10">
+                    <Slider {...settings}>
+                        {featureBookCats.map((items, index) => (
+                            <div key={index} className="px-2">
+                                <Link href={`/subCategory/${items.slug}`}>
+                                    <div className="w-full rounded-md overflow-hidden transition-transform transform hover:scale-105 duration-300">
+                                        <img
+                                            src={filepath + items.thumbnail}
+                                            alt={items.name}
+                                            className="w-full h-[400px] object-cover rounded-md"
+                                        />
+                                        <h5 className="text-center mt-3 text-base font-semibold text-gray-700">
+                                            {items.name}
+                                        </h5>
+                                    </div>
                                 </Link>
                             </div>
-                        ))
-                    }
-                </Slider>
-
-
-
-
+                        ))}
+                    </Slider>
+                </div>
             </section>
         </div>
     )

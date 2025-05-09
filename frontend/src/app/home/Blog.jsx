@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { useEffect, useState } from "react";
 import { InfiniteMovingCards } from "../components/ui/infinite-moving-cards";
 import { Cover } from "../components/ui/cover";
@@ -10,24 +10,29 @@ import { fatchBlog } from "../redux/slices/blogSlice";
 const Blog = () => {
 
     const dispatch = useDispatch();
-    const [blogData, setBlogData] = useState([])
+    const [blogData, setBlogData] = useState([]);
 
-    const blogs = useSelector((state) => state.blog.value)
-
+    const blogs = useSelector((state) => state.blog.value);
 
     useEffect(() => {
-        dispatch(fatchBlog())
-    }, [dispatch])
+        dispatch(fatchBlog());
+    }, [dispatch]);
 
     useEffect(() => {
         if (blogs.data) setBlogData(blogs.data);
+    }, [blogs]);
 
-    }, [blogs])
     return (
         <div>
-            <h3 className='text-7xl text-center font-medium'><Cover className="mx-auto flex gap-4">   Blogs  <ImBlog /> </Cover></h3>
+            {/* Heading */}
+            <h3 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center font-medium'>
+                <Cover className="mx-auto flex gap-4">
+                    Blogs <ImBlog />
+                </Cover>
+            </h3>
 
-            <div className=" my-20 rounded-md flex flex-col antialiased  dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+            {/* Infinite Moving Cards Section */}
+            <div className="my-10 md:my-20 rounded-md flex flex-col items-center justify-center relative overflow-hidden">
                 <InfiniteMovingCards
                     blogData={blogData}
                     direction="right"
@@ -35,10 +40,11 @@ const Blog = () => {
                 />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Blog
+export default Blog;
+
 
 const testimonials = [
     {
