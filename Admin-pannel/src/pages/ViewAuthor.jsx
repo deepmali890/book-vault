@@ -449,7 +449,7 @@ const ViewAuthor = () => {
                   <td class="px-5   bg-white  text-md ">
                     <Avatar>
                       <AvatarImage
-                        src={filepath + items.thumbnail}
+                        src={items.thumbnail}
                         alt="@shadcn"
                       />
                       <AvatarFallback></AvatarFallback>

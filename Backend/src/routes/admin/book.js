@@ -1,10 +1,10 @@
 const express = require('express');
 const { cretaebook, readBook, updateBookStatus, updateBookType, deleteBook, bookById, updateBook, deletedBook, PermanentdeleteBook, restoreBook, manyDeleteBook } = require('../../controllers/controllers');
-const fileHandle = require('../../middlewares/multer');
+const uploadFields = require('../../middlewares/upload.middleware');
 
 const bookRouter = express.Router();
 
-bookRouter.post('/create-book', fileHandle('books'),cretaebook)
+bookRouter.post('/create-book', uploadFields.bookVault,cretaebook)
 bookRouter.get('/read-book',readBook)
 bookRouter.put('/update-book-status/:_id', updateBookStatus)
 bookRouter.put('/update-book-type/:_id', updateBookType)

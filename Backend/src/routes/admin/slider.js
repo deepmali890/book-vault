@@ -15,7 +15,7 @@ const fileHandle = require('../../middlewares/multer');
 
 const sliderRouter = express.Router();
 
-sliderRouter.post('/create-slider', fileHandle('slider'), createSlider)
+sliderRouter.post('/create-slider', createSlider)
 sliderRouter.get('/read-slider', readSlider)
 sliderRouter.put('/update-slider-status/:_id', updateSliderStatus)
 sliderRouter.put('/delete-slider/:_id', deleteSlider)

@@ -11,11 +11,11 @@ const { createAuthor,
     multiDeleteAuthor,
     activeAuthor
 } = require('../../controllers/controllers');
-const fileHandle = require('../../middlewares/multer');
+const uploadFields = require('../../middlewares/upload.middleware');
 
 const authorRouter = express.Router();
 
-authorRouter.post('/create-author', fileHandle('author'), createAuthor)
+authorRouter.post('/create-author', uploadFields.authorThumbnail,  createAuthor)
 authorRouter.get('/read-author', readAuthor)
 authorRouter.put('/update-author-status/:_id', updateAuthorStatus)
 authorRouter.put('/delete-author/:_id', deleteAuthor)

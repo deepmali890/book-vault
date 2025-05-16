@@ -4,7 +4,7 @@ const fileHandle = require('../../middlewares/multer');
 
 const teamRouter = express.Router();
 
-teamRouter.post('/create-team',fileHandle('team'),cretaeTeam)
+teamRouter.post('/create-team',cretaeTeam)
 teamRouter.get('/read-team',readTeam)
 
 module.exports= teamRouter;

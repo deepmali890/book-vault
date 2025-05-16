@@ -1,13 +1,14 @@
 const Author = require("../../models/author");
+const uploadToSupabase = require("../../utils/uploadToSupabase");
+
 
 const createAuthor = async (req, res) => {
     try {
 
         const data = req.body;
-
-        if (req.files) {
-            if (req.files.thumbnail) data.thumbnail = req.files.thumbnail[0].filename;
-
+        if (req.file) {
+            const publicUrl = await uploadToSupabase(req.file, 'authorThumbnail/thumbnails');
+            data.thumbnail = publicUrl;
         }
 
         const dataToSave = new Author(data);
@@ -152,7 +153,7 @@ const multiDeleteAuthor = async (req, res) => {
     }
     catch (error) {
         console.log(error)
-        res.status(500).json({ message: "internal Server Error"})
+        res.status(500).json({ message: "internal Server Error" })
 
     }
 }

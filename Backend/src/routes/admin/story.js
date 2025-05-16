@@ -14,7 +14,7 @@ const fileHandle = require('../../middlewares/multer');
 
 const storyRouter = express.Router();
 
-storyRouter.post('/cretae-story', fileHandle('story'), createStory)
+storyRouter.post('/cretae-story', createStory)
 storyRouter.get('/read-story', readStory)
 storyRouter.put('/update-story-status/:_id', updateStoryStatus)
 storyRouter.put('/delete-story/:_id', deleteStory)

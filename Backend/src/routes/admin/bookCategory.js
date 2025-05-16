@@ -11,11 +11,11 @@ const { createBookCategory,
     PermanentdeleteCategory,
     multiDeleteBookCategory,
     activeBookCategory} = require('../../controllers/controllers');
-const fileHandle = require('../../middlewares/multer');
+const uploadFields = require('../../middlewares/upload.middleware');
 
 const bookCategoryRouter = express.Router();
 
-bookCategoryRouter.post('/create-book-category', fileHandle('book-category'), createBookCategory)
+bookCategoryRouter.post('/create-book-category',uploadFields.categoryThumbnail, createBookCategory)
 bookCategoryRouter.get('/read-book-category', readBookCategory)
 bookCategoryRouter.put('/update-book-category-status/:_id', updateBookCategoryStatus)
 bookCategoryRouter.put('/update-book-category-feature/:_id', updateCategoryFeature)

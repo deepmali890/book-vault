@@ -566,15 +566,15 @@ const ViewBook = () => {
                       </td>
 
                       <td class="px-5    bg-white text-md ">
-                        <img src={filePath + items.frontimg} alt="" className='w-[50px] h-[70px] rounded-md mx-auto' />
+                        <img src={items.frontimg} alt="" className='w-[50px] h-[70px] rounded-md mx-auto' />
                       </td>
 
                       <td class="px-5    bg-white text-md ">
-                        <img src={filePath + items.backimg} alt="" className='w-[50px] h-[70px] rounded-md mx-auto' />
+                        <img src={items.backimg} alt="" className='w-[50px] h-[70px] rounded-md mx-auto' />
                       </td>
 
                       <td class="px-5    bg-white text-md ">
-                        <a href={pdfPath + items.pdf}><FaRegFilePdf className='text-[30px]' /></a>
+                        <a href={items.pdf}><FaRegFilePdf className='text-[30px]' /></a>
                       </td>
 
                       <td class="px-5    bg-white text-md ">
@@ -613,7 +613,7 @@ const ViewBook = () => {
                                   {items.description}
                                 </marquee>
 
-                                <Audioplayer audioSrc={audioPath + items.audio} />
+                                <Audioplayer audioSrc={items.audio} />
 
 
                               </DialogDescription>

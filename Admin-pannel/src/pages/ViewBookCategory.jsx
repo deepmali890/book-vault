@@ -447,7 +447,7 @@ const ViewBookCategory = () => {
                     </td>
 
                     <td class="px-5    bg-white text-md ">
-                      <img src={filepath + items.thumbnail} alt="" className='w-[50px] h-[70px] rounded-md mx-auto' />
+                      <img src={items.thumbnail} alt="" className='w-[50px] h-[70px] rounded-md mx-auto' />
                     </td>
 
                     <td class="px-5   bg-white text-center  text-md ">

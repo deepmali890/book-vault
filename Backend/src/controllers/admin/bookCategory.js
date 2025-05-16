@@ -1,29 +1,28 @@
 const BookCategory = require("../../models/bookCategory");
+const uploadToSupabase = require("../../utils/uploadToSupabase");
 
 const createBookCategory = async (req, res) => {
-    try {
+  try {
+    const data = req.body;
 
-        const data = req.body;
-        if (req.files) {
-            if (req.files.thumbnail) data.thumbnail = req.files.thumbnail[0].filename;
-
-        }
-        const dataToSave = new BookCategory(data);
-        const response = await dataToSave.save();
-        console.log(data)
-
-        res.status(200).json({ message: 'Success', data: response })
-
-
-
+    if (req.file) {
+      const publicUrl = await uploadToSupabase(req.file, 'categories/thumbnails');
+      data.thumbnail = publicUrl;
     }
-    catch (error) {
-        console.log(error);
-        if (error.code === 11000 && error.keyPattern && error.keyPattern.name === 1) return res.status(400).json({ message: 'category already exists' })
-        res.status(500).json({ message: 'internal Server Error' })
 
-    }
-}
+    const dataToSave = new BookCategory(data);
+    const response = await dataToSave.save();
+
+    res.status(200).json({ message: 'Success', data: response });
+  } catch (error) {
+    console.log(error);
+    if (error.code === 11000 && error.keyPattern && error.keyPattern.name === 1)
+      return res.status(400).json({ message: 'Category already exists' });
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+
 
 const readBookCategory = async (req, res) => {
     try {

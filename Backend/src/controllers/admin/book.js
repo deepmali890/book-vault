@@ -1,32 +1,44 @@
 const Book = require("../../models/book");
+const uploadToSupabase = require("../../utils/uploadToSupabase");
 
 const cretaebook = async (req, res) => {
-    try {
+  try {
+    const data = req.body;
 
-        const data = req.body;
-
-        if (req.files) {
-            if (req.files.frontimg) data.frontimg = req.files.frontimg[0].filename;
-            if (req.files.backimg) data.backimg = req.files.backimg[0].filename;
-            if (req.files.pdf) data.pdf = req.files.pdf[0].filename;
-            if (req.files.audio) data.audio = req.files.audio[0].filename;
-            if (req.files.multiAudio) data.multiAudio = req.files.multiAudio.map((audio) => audio.filename)
-        }
-
-        const dataToSave = new Book(data)
-        const response = await dataToSave.save();
-        res.status(200).json({ message: "Success", data: response });
-
-        console.log(data)
-
+    if (req.files) {
+      if (req.files.frontimg) {
+        data.frontimg = await uploadToSupabase(req.files.frontimg[0], "books/frontimg");
+      }
+      if (req.files.backimg) {
+        data.backimg = await uploadToSupabase(req.files.backimg[0], "books/backimg");
+      }
+      if (req.files.pdf) {
+        data.pdf = await uploadToSupabase(req.files.pdf[0], "books/pdf");
+      }
+      if (req.files.audio) {
+        data.audio = await uploadToSupabase(req.files.audio[0], "books/audio");
+      }
+      if (req.files.multiAudio) {
+        const audioUrls = await Promise.all(
+          req.files.multiAudio.map(file => uploadToSupabase(file, "books/multiAudio"))
+        );
+        data.multiAudio = audioUrls;
+      }
     }
-    catch (error) {
-        console.log(error);
-        if (error.code === 11000 && error.keyPattern && error.keyPattern.name === 1) return res.status(400).json({ message: 'category already exists' })
-        res.status(500).json({ message: 'internal Server Error' })
 
-    }
-}
+    // Optional: Add validation here
+
+    const newBook = new Book(data);
+    const savedBook = await newBook.save();
+
+    res.status(200).json({ message: "Book uploaded successfully", data: savedBook });
+  } catch (error) {
+    console.error("Error creating book:", error);
+    res.status(500).json({ message: "Something went wrong", error: error.message });
+  }
+};
+
+
 
 const readBook = async (req, res) => {
     try {

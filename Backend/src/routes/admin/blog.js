@@ -4,7 +4,7 @@ const { createBlog, readBlog, updateBlogStatus } = require('../../controllers/co
 
 const blogRouter = express.Router()
 
-blogRouter.post('/create-blog',fileHandle('blog'),createBlog) 
+blogRouter.post('/create-blog',createBlog) 
 blogRouter.get('/read-blog',readBlog) 
 blogRouter.put('/update-blog-status/:_id',updateBlogStatus) 
 
