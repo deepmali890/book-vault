@@ -72,7 +72,7 @@ export const AnimatedTestimonials = ({ bookData, filepath, autoplay = false }) =
                   className="absolute inset-0 origin-bottom"
                 >
                   <img
-                    src={filepath + book.thumbnail}
+                    src={book.thumbnail}
                     // alt={book.name || 'Book Thumbnail'}
                     width={500}
                     height={500}

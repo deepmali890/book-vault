@@ -77,7 +77,7 @@ const Card = ({ product, filePath }) => {
       <img
         onClick={handleProductDetails}
         className="h-60 rounded-t-lg scale-95 cursor-pointer hover:scale-105 duration-[0.5s] mx-auto object-cover"
-        src={filePath + product.frontimg}
+        src={product.frontimg}
         alt={product.name}
       />
 

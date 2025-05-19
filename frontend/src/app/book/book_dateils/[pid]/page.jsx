@@ -126,14 +126,14 @@ const page = () => {
           <div className="lg:col-span-3 h-full flex gap-2 p-8">
             <div className="relative hover:scale-110 duration-[0.3s]  h-full flex items-center justify-center lg:min-h-[580px]">
               <img
-                src={filepath + book.frontimg}
+                src={book.frontimg}
                 alt="book"
                 className="lg:w-3/5 w-3/4 h-full object-contain max-lg:p-8"
               />
             </div>
             <div className="relative h-full hover:scale-110 duration-[0.3s]  flex items-center justify-center lg:min-h-[580px]">
               <img
-                src={filepath + book.backimg}
+                src={book.backimg}
                 alt="book"
                 className="lg:w-3/5 w-3/4 h-full object-contain max-lg:p-8"
               />

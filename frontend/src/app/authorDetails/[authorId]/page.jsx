@@ -42,7 +42,7 @@ const page = () => {
           <div className="grid grid-cols-2 gap-4 mt-8">
             <img
               className="w-full rounded-lg"
-              src={filepath + (filteredBooks && filteredBooks[0]?.authors.thumbnail || 'default-frontimg.jpg')}
+              src={authors.thumbnail}
               alt="Author Thumbnail"
             />
 

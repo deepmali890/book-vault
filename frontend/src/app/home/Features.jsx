@@ -67,7 +67,7 @@ const Features = () => {
                                 <Link href={`/subCategory/${items.slug}`}>
                                     <div className="w-full rounded-md overflow-hidden transition-transform transform hover:scale-105 duration-300">
                                         <img
-                                            src={filepath + items.thumbnail}
+                                            src={items.thumbnail}
                                             alt={items.name}
                                             className="w-full h-[400px] object-cover rounded-md"
                                         />

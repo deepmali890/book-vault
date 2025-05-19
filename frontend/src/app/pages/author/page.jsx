@@ -38,9 +38,9 @@ const page = () => {
                         {
                             authorData.map((item, index) => (
                                 <Link href={`/authorDetails/${item._id}`} key={index} >   <div className="bg-white rounded-lg shadow-md p-6 my-6 text-center cursor-pointer" >
-                                    <img src={filepath + item.thumbnail} alt="Team Member 1" className="w-[100px] h-[100px] mx-auto rounded-full mb-4" />
+                                    <img src={item.thumbnail} alt="Team Member 1" className="w-[100px] h-[100px] mx-auto rounded-full mb-4" />
                                     <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
-                                    <p className="text-gray-700">Email: {item.email}</p>
+                                    <p className="text-gray-700">{item.email}</p>
                                 </div>
                                 </Link>
                             ))
